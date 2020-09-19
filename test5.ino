@@ -120,7 +120,7 @@ void setup()
 	// Set number of samples averaged
 	Compass.setSamples(HMC5883L_SAMPLES_8);
 	// Set calibration offset
-	Compass.setOffset(-102, -202, -69);
+	Compass.setOffset(-451, 534, 644);
 
 	//record and play initialize
 	pinMode(REC_PIN, OUTPUT);
@@ -204,11 +204,12 @@ void loop()
 	case COMPASS_STATE:
 		Angle = getAngle();
 		resetState();
-		//Serial.print(Angle);
+		//Serial.println(Angle);
 		break;
 	case NAVIGATION_STATE:
 		getMsg();
 		//if target address has been received
+		//Serial.print(DesLatitude);
 		if (100 != DesLatitude)
 		{
 			//update angle and gps data
@@ -673,7 +674,7 @@ void updateStep()
 	{
 		HighAcc = QuaAcc;
 	}
-	else if (HighAcc - QuaAcc > 0.16)
+	else if (HighAcc - QuaAcc > 0.18)
 	{
 		float CurrTime = millis();
 		if (CurrTime - LastStepTime >= 200)
